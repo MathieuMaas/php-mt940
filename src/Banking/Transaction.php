@@ -102,6 +102,15 @@ class Transaction implements \JsonSerializable
     {
         $this->transactionCode = (string) $var;
     }
+    
+     /**
+     * @param string $var
+     */
+     public function setEndToEndId($var)
+    {
+        $this->endToEndId = (string) $var;
+    }
+
 
     // getters
     /**
@@ -171,7 +180,15 @@ class Transaction implements \JsonSerializable
     {
         return $this->transactionCode;
     }
-
+    
+    /**
+     * @return string
+     */
+    public function getEndToEndId()
+    {
+        return $this->endToEndId;
+    }
+    
     /**
      * @return bool
      */

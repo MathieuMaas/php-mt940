@@ -154,6 +154,7 @@ abstract class Engine
                 $transaction->setValueTimestamp($this->parseTransactionValueTimestamp());
                 $transaction->setEntryTimestamp($this->parseTransactionEntryTimestamp());
                 $transaction->setTransactionCode($this->parseTransactionCode());
+                $transaction->setEndToEndId($this->parseEndToEndId());
                 $statement->addTransaction($transaction);
             }
             $results[] = $statement;
@@ -511,6 +512,19 @@ abstract class Engine
             return trim($results[1]);
         }
 
+        return '';
+    }
+    
+     /**
+     * return EREF
+     *
+     * @return string
+     */
+    protected function parseEndToEndId()
+    {
+        if(preg_match("/.*EREF\/(.*)\/.*/U", $this->getCurrentTransactionData(), $results)  && !empty($results[1])){
+            return $results[1];
+        }
         return '';
     }
 
